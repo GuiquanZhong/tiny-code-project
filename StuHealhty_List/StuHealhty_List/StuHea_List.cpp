@@ -108,11 +108,64 @@ void StuList::StuErase()
 
 void StuList::writeToFile()
 {
-
+    ofstream file("StuHealthy.txt", ios::out);
+    if (!file)
+    {
+        cout << "文件打开失败" << endl;
+            return;
+    }
+    Student* cur = head;
+    while (cur)
+    {
+        file << cur->number << endl;
+        file << cur->name << endl;
+        file << cur->birthday << endl;
+        file << cur->sex << endl;
+        file << cur->healthy << endl;
+        cur = cur->next;
+    }
+    file.close();
+    cout << "文件写入成功" << endl;
 }
 
 void StuList::readFile()
 {
+    ifstream file("StuHealthy.txt", ios::in);
+    string line;
+    if (!file)
+    {
+        cout << "文件打开失败" << endl;
+        return;
+    }
+    
+    while (getline(file, line))
+    {
+        Student* cur = head;
+        if (cur == NULL)
+        {
+            cur = new Student;
+            cur->next = NULL;
+            head = cur;
+        }
+        else
+        {
+            while (cur->next != NULL)
+            {
+                cur = cur->next;
+            }
+            cur->next = new Student;
+            cur = cur->next;
+            cur->next = NULL;
+        }
+        cur->number = line;
+        getline(file, cur->name);
+        getline(file, cur->birthday);
+        getline(file, cur->sex);
+        getline(file, cur->healthy);
+        cur = cur->next;
+    }
+    file.close();
+    cout << "文件读取成功" << endl;
 }
 
 void StuList::Stushow()
