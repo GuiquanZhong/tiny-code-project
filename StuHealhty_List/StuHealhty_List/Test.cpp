@@ -49,7 +49,7 @@ int main()
 			s1.Stushow();
 			break;
 		}
-		case 8:
+		case 0:
 		{
 			cout << "ÍË³ö³É¹¦" << endl;
 			exit(0);
