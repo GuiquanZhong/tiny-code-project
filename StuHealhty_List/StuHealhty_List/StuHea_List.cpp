@@ -76,6 +76,7 @@ void StuList::StuErase()
 {
     cout << "请输入要删除的学生学号：" << endl;
     string s2;
+    cin >> s2;
     if (head == NULL)
     {
         cout << "当前健康表为空，无法删除" << endl;
